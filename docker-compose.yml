@@ -9,4 +9,4 @@ services:
       - RTMP_PORT=1935
     volumes:
       - ./certs:/opt/certs
-      - ./app:/app
+      - ./app/server.js:/app/server.js

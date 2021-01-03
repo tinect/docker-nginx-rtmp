@@ -1,5 +1,5 @@
 const { spawn } = require('child_process');
-const fastify = require('fastify')({ logger: false });
+const fastify = require('fastify')({ logger: true });
 fastify.register(require('fastify-formbody'));
 
 let processes = [];
