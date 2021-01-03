@@ -160,9 +160,23 @@ ADD nginx.conf /etc/nginx/nginx.conf.template
 RUN mkdir -p /opt/data && mkdir /www
 ADD static /www/static
 
+RUN apk add --no-cache nodejs npm
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY ["app/package.json", "app/package-lock.json*", "/app/"]
+
+RUN npm install --production
+
+COPY . .
+
+CMD [ "node", "server.js" ]
+
 EXPOSE 1935
 EXPOSE 80
 
 CMD envsubst "$(env | sed -e 's/=.*//' -e 's/^/\$/g')" < \
   /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && \
-  nginx
+  nginx && \
+  node server.js

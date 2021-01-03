@@ -1,0 +1,17 @@
+{
+  "name": "fastify-restream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "fastify-formbody": "^5.0.0",
+    "fastify": "^3.9.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "tinect",
+  "license": "MIT"
+}
