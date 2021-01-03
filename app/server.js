@@ -8,7 +8,8 @@ fastify.post('/start', async (request, reply) => {
     let parts = request.body.name.split('__');
     let url = parts[0] + '://' + parts[1] + '/live/' + parts[2] + '/' + parts[3] + '/video.m3u8';
 
-    processes[request.body.name] = spawn('/usr/local/bin/ffmpeg', ['-i', url, '-map', '0', '-sn', '-c:v', 'copy', '-f', 'flv', 'rtmp://localhost:1935/live/' + request.body.name]);
+    //processes[request.body.name] = spawn('/usr/local/bin/ffmpeg', ['-i', url, '-map', '0', '-sn', '-c:v', 'copy', '-f', 'flv', 'rtmp://localhost:1935/live/' + request.body.name]);
+    processes[request.body.name] = spawn('/usr/local/bin/ffmpeg', ['-re', '-i', url, '-acodec', 'copy', '-vcodec', 'copy', '-f', 'flv', 'rtmp://localhost:1935/live/' + request.body.name]);
 
     processes[request.body.name].stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
